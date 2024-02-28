@@ -1,0 +1,20 @@
+{
+  "name": "synesthesia",
+  "version": "1.0.0",
+  "description": "A project to map words to colours by scraping google images",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoreviQ/synesthesia.git"
+  },
+  "author": "Oliver Jay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoreviQ/synesthesia/issues"
+  },
+  "homepage": "https://github.com/LoreviQ/synesthesia#readme"
+}
