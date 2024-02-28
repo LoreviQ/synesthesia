@@ -2,7 +2,11 @@ const url = require("node:url");
 const { JSDOM } = require("jsdom");
 
 async function convertWordToColour(word) {
-    const htmlBody = search(word);
+    const htmlBody = await search(word);
+    const htmlObj = new JSDOM(htmlBody);
+    console.log(
+        htmlObj.window.document.querySelector("img").getAttribute("src")
+    );
 }
 
 async function search(searchQuery) {

@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/LoreviQ/synesthesia/issues"
   },
-  "homepage": "https://github.com/LoreviQ/synesthesia#readme"
+  "homepage": "https://github.com/LoreviQ/synesthesia#readme",
+  "dependencies": {
+    "jsdom": "^24.0.0"
+  }
 }

@@ -1,4 +1,4 @@
-const { search } = require("./search.js");
+const { convertWordToColour } = require("./search.js");
 
 async function main() {
     const word = "test";
