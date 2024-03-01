@@ -1,11 +1,20 @@
-const url = require("node:url");
-const fs = require("node:fs");
+const { url } = require("node:url");
+const { fs } = require("node:fs");
 const { JSDOM } = require("jsdom");
+const sharp = require("sharp");
+const axios = require("axios");
 
 async function convertWordToColour(word) {
     const htmlBody = await getSearchHTML(word);
     const srcValues = await getImageSrc(htmlBody);
-    console.log(srcValues);
+    getImageColourInfo(srcValues[0]);
+}
+
+async function getImageColourInfo(imageUrl) {
+    const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
+    const imageBuffer = Buffer.from(response.data, "binary");
+    const metadata = await sharp(imageBuffer).metadata();
+    console.log(metadata);
 }
 
 async function getImageSrc(htmlBody) {

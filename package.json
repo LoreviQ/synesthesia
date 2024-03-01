@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/LoreviQ/synesthesia#readme",
   "dependencies": {
-    "jsdom": "^24.0.0"
+    "axios": "^1.6.7",
+    "jsdom": "^24.0.0",
+    "sharp": "^0.33.2"
   }
 }
