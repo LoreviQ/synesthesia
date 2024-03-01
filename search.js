@@ -14,7 +14,9 @@ async function getImageSrc(htmlBody) {
     const srcValues = [];
     for (const img of imgElements) {
         const src = img.getAttribute("src");
-        srcValues.push(src);
+        if (src.includes("https")) {
+            srcValues.push(src);
+        }
     }
     return srcValues;
 }
