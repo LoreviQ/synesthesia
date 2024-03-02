@@ -13,8 +13,27 @@ async function convertWordToColour(word) {
 async function getImageColourInfo(imageUrl) {
     const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
     const imageBuffer = Buffer.from(response.data, "binary");
-    const metadata = await sharp(imageBuffer).metadata();
-    console.log(metadata);
+    const { width, height, channels } = await sharp(imageBuffer).metadata();
+    const rawPixelData = await sharp(imageBuffer).raw().toBuffer();
+    const colorInfo = processPixelData(rawPixelData, width, height, channels);
+    console.log("Image Resolution:", `${width}x${height}`);
+    console.log("Color Information:", colorInfo);
+}
+
+function processPixelData(rawPixelData, width, height, channels) {
+    const colorInfo = {};
+
+    for (let i = 0; i < rawPixelData.length; i += channels) {
+        const colorChannels = rawPixelData.slice(i, i + channels);
+        const hexCode = rgbToHex(...colorChannels);
+        colorInfo[hexCode] = (colorInfo[hexCode] || 0) + 1;
+    }
+
+    return colorInfo;
+}
+
+function rgbToHex(r, g, b) {
+    return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
 }
 
 async function getImageSrc(htmlBody) {
